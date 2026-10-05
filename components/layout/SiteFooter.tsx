@@ -76,23 +76,29 @@ export function SiteFooter() {
               Products
             </p>
             <ul className="mt-4 space-y-3 text-sm">
-              {PRODUCTS.map((p) => (
-                <li key={p.slug}>
-                  <a
-                    href={productUrl(p)}
-                    className="group inline-flex items-center gap-1 hover:text-white"
-                  >
-                    {p.name}
-                    <ArrowUpRight
-                      size={14}
-                      className="opacity-0 transition-opacity group-hover:opacity-100"
-                    />
-                    <span className="block w-full text-xs text-slate-500 dark:text-slate-400">
-                      {p.tagline}
-                    </span>
-                  </a>
-                </li>
-              ))}
+              {PRODUCTS.map((p) => {
+                const url = productUrl(p);
+                const isExternal = url.startsWith("http");
+                return (
+                  <li key={p.slug}>
+                    <a
+                      href={url}
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className="group inline-flex items-center gap-1 hover:text-white"
+                    >
+                      {p.name}
+                      <ArrowUpRight
+                        size={14}
+                        className="opacity-0 transition-opacity group-hover:opacity-100"
+                      />
+                      <span className="block w-full text-xs text-slate-500 dark:text-slate-400">
+                        {p.tagline}
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
