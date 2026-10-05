@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (driven by `next-themes` `.dark` on <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-navy-950: #060f21;
   --color-navy-900: #0b1e3a;
@@ -20,12 +23,25 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
 body {
   background: #ffffff;
   color: #1e293b;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  background: #060f21;
+  color: #e2e8f0;
 }
 
 ::selection {
