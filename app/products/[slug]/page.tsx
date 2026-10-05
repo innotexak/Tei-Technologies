@@ -65,7 +65,7 @@ export default async function ProductPage({
             <a
               href={url}
               target={isExternal ? "_blank" : undefined}
-              rel="noreferrer"
+              rel={isExternal ? "noopener noreferrer" : undefined}
               className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 hover:bg-slate-200"
             >
               Open {product.name}
