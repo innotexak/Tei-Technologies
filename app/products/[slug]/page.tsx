@@ -2,7 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { PRODUCTS, productBySlug, productUrl } from "@/lib/site";
+import { PRODUCTS, productBySlug, productUrl } from "@/lib/data/products";
+import { StartProjectButton } from "@/components/project-enquiry";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -18,7 +19,7 @@ export async function generateMetadata({
   if (!product) return { title: "Product" };
   return {
     title: product.name,
-    description: `${product.name} — ${product.tagline}. ${product.longDescription}`,
+    description: `${product.name}- ${product.tagline}. ${product.longDescription}`,
   };
 }
 
@@ -70,34 +71,31 @@ export default async function ProductPage({
               Open {product.name}
               <ArrowUpRight size={16} />
             </a>
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
-            >
+            <StartProjectButton className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">
               Ask about this product
-            </Link>
+            </StartProjectButton>
           </div>
         </div>
       </div>
 
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8">
-            <h2 className="text-lg font-semibold text-navy-900">Who it&apos;s for</h2>
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 dark:border-white/10 dark:bg-navy-900">
+            <h2 className="text-lg font-semibold text-navy-900 dark:text-white">Who it&apos;s for</h2>
             <ul className="mt-4 space-y-2.5">
               {product.audience.map((a) => (
-                <li key={a} className="flex items-start gap-2 text-sm text-slate-600">
+                <li key={a} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
                   <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-accent-600" />
                   {a}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-3xl border border-slate-200 bg-[#FAFAF8] p-8">
-            <h2 className="text-lg font-semibold text-navy-900">Key features</h2>
+          <div className="rounded-3xl border border-slate-200 dark:border-white/10 bg-[#FAFAF8] dark:bg-white/[0.04] p-8">
+            <h2 className="text-lg font-semibold text-navy-900 dark:text-white">Key features</h2>
             <ul className="mt-4 space-y-2.5">
               {product.highlights.map((h) => (
-                <li key={h} className="flex items-start gap-2 text-sm text-slate-600">
+                <li key={h} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
                   <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-accent-600" />
                   {h}
                 </li>
@@ -108,21 +106,18 @@ export default async function ProductPage({
 
         <div className="mt-10 rounded-3xl bg-navy-950 p-8 text-center md:p-10">
           <p className="text-lg font-semibold text-white">
-            Need something like {product.name} — but built for you?
+            Need something like {product.name}- but built for you?
           </p>
           <p className="mx-auto mt-2 max-w-md text-sm text-slate-400">
             We build custom software for individuals, firms and government.
             Tell us your idea and we&apos;ll scope it with you.
           </p>
-          <Link
-            href="/contact"
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 hover:bg-slate-200"
-          >
+          <StartProjectButton className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-navy-950 hover:bg-slate-200">
             Start a project
-          </Link>
+          </StartProjectButton>
         </div>
 
-        <p className="mt-8 border-t border-slate-200 pt-6 text-xs leading-relaxed text-slate-500">
+        <p className="mt-8 border-t border-slate-200 dark:border-white/10 pt-6 text-xs leading-relaxed text-slate-500 dark:text-slate-400">
           {product.name} is a product designed, built and operated by Tei
           Technologies. Product terms, privacy and support live on its own
           platform.
