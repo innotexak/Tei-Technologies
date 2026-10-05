@@ -81,7 +81,7 @@ export function Products() {
                     <a
                       href={url}
                       target={external ? "_blank" : undefined}
-                      rel="noreferrer"
+                      rel={external ? "noopener noreferrer" : undefined}
                       className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-navy-900 dark:hover:text-white hover:underline"
                     >
                       Open {p.name}
