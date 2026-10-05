@@ -7,4 +7,4 @@ export { ProjectEnquiryModal } from "./ProjectEnquiryModal";
 export { StartProjectButton } from "./StartProjectButton";
 export type { ProjectEnquiryFormData } from "./types";
 export { validateEnquiryForm } from "./validation";
-export { buildEnquiryBody, buildEnquirySubject } from "./enquiry-mail";
+export { buildEnquiryBody, buildEnquiryHtml, buildEnquirySubject } from "./enquiry-mail";

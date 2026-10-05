@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { COMPANY } from "@/lib/config/company";
-import { buildEnquiryBody, buildEnquirySubject } from "@/components/project-enquiry/enquiry-mail";
+import { buildEnquiryBody, buildEnquiryHtml, buildEnquirySubject } from "@/components/project-enquiry/enquiry-mail";
 import { validateEnquiryForm } from "@/components/project-enquiry/validation";
 import type { ProjectEnquiryFormData } from "@/components/project-enquiry/types";
 
@@ -80,6 +80,7 @@ export async function POST(req: Request) {
       replyTo: form.email.trim(),
       subject: buildEnquirySubject(form),
       text: buildEnquiryBody(form),
+      html: buildEnquiryHtml(form),
     });
 
     return NextResponse.json({ ok: true });
